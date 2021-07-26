@@ -1,0 +1,38 @@
+.header {
+  padding: 8px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.title {
+  margin-left: 12px;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  padding: 4px;
+  border: none;
+  border-radius: 50%;
+  margin: 4px;
+  background-color: white;
+  color: grey;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.checkboxLabel {
+  font-size: 12px;
+  margin-left: 4px;
+}
+
+@media only screen and (max-width: 600px) {
+  .logo {
+    display: none;
+  }
+}

@@ -1,0 +1,1 @@
+export const spaceContent = (spaceId: string) => `https://graphql.contentful.com/content/v1/spaces/${spaceId}/`
