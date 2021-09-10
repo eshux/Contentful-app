@@ -1,4 +1,4 @@
-import { TagType } from "./tagType";
+import { TagType } from "../sharedTypes/tagType";
 
 export interface BookmarkType {
   sys: {

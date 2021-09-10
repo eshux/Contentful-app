@@ -1,15 +1,19 @@
 import React, { useState } from "react";
-import Header from "./components/Header/Header";
-import useContentful from "./hooks/use-contentful";
-import Hero from "./components/Hero/Hero";
-import { homepageQuery } from "./queries/homepageQuery";
+import { Route, BrowserRouter as Router, Switch} from 'react-router-dom';
+import Homepage from "./pages/Homepage";
+import Blog from "./pages/Blog";
+import About from "./pages/About";
 import "./App.css";
-import Bookmarks from "./components/Bookmarks/Bookmarks";
+import useContentful from "./hooks/use-contentful";
+import { homepageQuery } from "./queries/homepageQuery";
+import Header from "./components/Header/Header";
+import { HomepageType } from "./types/homepageQuery/homepageType";
 
-
-function App() {
-	const [isPreview, setIsPreview] = useState(true) // use preview API - try changing to false to see how the content is changing (write something )
+const App = () => {
+	const [isPreview, setIsPreview] = useState(true) // preview API
 	const { data, errors } = useContentful(homepageQuery, isPreview)
+
+	const homepageData = data as HomepageType;
 
 	if(errors) {
 		console.log(errors.map(err => err.message).join(", "))
@@ -22,25 +26,26 @@ function App() {
 			</div>
 		);
 	}
-
-	console.log(data)
-
+	
 	return (
-		<>
+		<Router>
 			<Header 
-				data={data.headerCollection.items[0]} 
+				data={homepageData.headerCollection.items[0]} 
 				preview={isPreview} 
 				handlePreview={() => setIsPreview(!isPreview)}
 			/>
-			<Hero person={data.personCollection.items[0]} />
-			<h4 className="text-center">Favorite bookmarks</h4>
-			{data.favoriteTag.items[0].linkedFrom
-				? <Bookmarks data={data.favoriteTag.items[0].linkedFrom?.bookmarkCollection.items}/>
-				: <h6 className="text-center">No favorite bookmarks</h6>
-			}
-			<h4 className="text-center">All bookmarks</h4>
-			<Bookmarks data={data.bookmarkCollection.items} />
-		</>
+			<Switch>
+				<Route exact path="/">
+					<Homepage data={homepageData}/>
+				</Route>
+				<Route path="/blog">
+					<Blog preview={isPreview}/>
+				</Route>
+				<Route path="/about">
+					<About/>
+				</Route>
+			</Switch>
+		</Router>	
 	);
 }
 

@@ -2,10 +2,11 @@ import { useState, useEffect, useContext } from "react";
 import { spaceContent } from "../APIs/spaceContent";
 import { CDA_ACCESS_TOKEN, CPA_ACCESS_TOKEN, SPACE_ID } from "../config/space-config";
 import { LanguageContext } from "../context/LanguageContext";
+import { BlogType } from "../types/blogQuery/blogType";
 import { HomepageType } from "../types/homepageQuery/homepageType";
 
-const useContentful = (queryData: (lang: string) => string, isPreview: boolean) => {
-	const [data, setData] = useState<HomepageType | null>(null);
+const useContentful = (queryData: (lang: string) => string, isPreview?: boolean) => {
+	const [data, setData] = useState<HomepageType | BlogType | null>(null);
 	const [errors, setErrors] = useState<Error[] | null>(null);
   const { siteLanguage } = useContext(LanguageContext);
 

@@ -1,4 +1,5 @@
 import React, { FC, useContext } from "react";
+import { Link, NavLink } from "react-router-dom";
 import { LanguageContext } from "../../context/LanguageContext";
 import { languages } from "../../data/languages";
 import { HeaderType } from "../../types/homepageQuery/headerType";
@@ -16,10 +17,16 @@ const Header:FC<Props> = ({ data, preview, handlePreview }) => {
   
   return (
     <div className={styles.header}>
-      <div className="flex-align-center">
-        <img className={styles.logo} src={data.logo.url} alt={data.logo.title} />
-        <h3 className={styles.title}>{data.title}</h3>
-      </div>
+      <Link to="/">
+        <div className="flex-align-center">
+            <img className={styles.logo} src={data.logo.url} alt={data.logo.title} />
+            <h3 className={styles.title}>{data.title}</h3>
+        </div>
+      </Link>
+      <nav className={styles.navigation}>
+        <NavLink to="/blog" activeClassName="selected" className={styles.navItem}>Blog</NavLink>
+        <NavLink to="/about" activeClassName="selected" className={styles.navItem}>About</NavLink>
+      </nav>
       <div className="flex-align-center">
         <input 
           checked={preview} 

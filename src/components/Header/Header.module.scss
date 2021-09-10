@@ -1,3 +1,8 @@
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .header {
   padding: 8px 12px;
   display: flex;
@@ -29,6 +34,14 @@
 .checkboxLabel {
   font-size: 12px;
   margin-left: 4px;
+}
+
+.selected {
+  color: orange;
+}
+
+.navItem {
+  margin-left: 12px;
 }
 
 @media only screen and (max-width: 600px) {
