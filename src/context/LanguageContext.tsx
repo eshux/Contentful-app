@@ -1,18 +1,22 @@
 import React, { createContext, useState, FC } from "react";
-import { languages } from "../data/languages";
+import { Languages, languages } from "../data/languages";
+import { blog } from "../locales/blog";
+import { BlogType } from "../locales/blogType";
 
 export const LanguageContext = createContext<LanguageContextType>(null!);
 
 export type LanguageContextType = {
-  setSiteLanguage: React.Dispatch<React.SetStateAction<string>>,
-  siteLanguage: string,
+  setSiteLanguage: React.Dispatch<React.SetStateAction<Languages>>,
+  siteLanguage: Languages,
   index: number;
+  blogList: BlogType;
 }
 
 export const LanguageProvider:FC = ({ children }) => {
-  const [siteLanguage, setSiteLanguage] = useState(languages[0]);
+  const [siteLanguage, setSiteLanguage] = useState<Languages>(languages[0]);
 
   const index = languages.indexOf(siteLanguage);
+  const blogList = blog[siteLanguage]
 
   return (
     <LanguageContext.Provider
@@ -20,6 +24,7 @@ export const LanguageProvider:FC = ({ children }) => {
         setSiteLanguage,
         siteLanguage,
         index,
+        blogList
       }}
     >
       {children}

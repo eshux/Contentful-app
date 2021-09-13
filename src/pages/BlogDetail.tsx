@@ -2,7 +2,7 @@ import React, {FC} from 'react'
 import { useParams } from 'react-router';
 import useContentful from '../hooks/use-contentful';
 import { getBlogPostById } from '../queries/getBlogPostById';
-import { BlogType } from '../types/blog/blogType';
+import Loader from 'react-loaders'
 import { SingleBlogType } from '../types/blog/singleBlogType';
 
 type Props = {
@@ -19,9 +19,9 @@ const BlogDetail:FC<Props>  = ({ preview }) => {
 
 	if (!data) {
 		return (
-			<div className="App">
-				<h6>Loading...</h6>
-			</div>
+      <div className="App">
+			  <Loader active={!data} type="ball-scale-ripple" />
+      </div>
 		);
 	}
 

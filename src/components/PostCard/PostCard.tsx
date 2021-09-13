@@ -1,5 +1,4 @@
 import React, {FC} from 'react'
-import { Link, useParams } from 'react-router-dom';
 import { BlogPostType } from '../../types/blog/blogPostType';
 import styles from './PostCard.module.scss';
 

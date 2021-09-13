@@ -11,8 +11,6 @@ const useContentful = (queryData: (lang: string, id?: string | undefined) => str
 	const [errors, setErrors] = useState<Error[] | null>(null);
   const { siteLanguage } = useContext(LanguageContext);
 
-	console.log("Data", data)
-
 	const query = queryData(siteLanguage, id && id);
 
 	useEffect(() => {

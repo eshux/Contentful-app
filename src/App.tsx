@@ -9,6 +9,7 @@ import { getHomepageData } from "./queries/getHomepageData";
 import Header from "./components/Header/Header";
 import { HomepageType } from "./types/homepage/homepageType";
 import BlogDetail from "./pages/BlogDetail";
+import Loader from "react-loaders";
 
 const App = () => {
 	const [isPreview, setIsPreview] = useState(true) // preview API
@@ -22,9 +23,9 @@ const App = () => {
 
 	if (!data) {
 		return (
-			<div className="App">
-				<h6>Loading...</h6>
-			</div>
+      <div className="App">
+			  <Loader active={!data} type="ball-scale-ripple" />
+      </div>
 		);
 	}
 	

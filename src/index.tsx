@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { LanguageProvider } from './context/LanguageContext';
 import './styles/helpers.scss';
 
+
 ReactDOM.render(
   <React.StrictMode>
     <LanguageProvider>
