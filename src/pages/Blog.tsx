@@ -12,8 +12,8 @@ type Props = {
 }
 
 const Blog:FC<Props> = ({ preview }) => {
-  const { data, errors } = useContentful(getBlogData, preview);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const { data, errors } = useContentful(getBlogData, preview, undefined, selectedTags);
 
   if (errors) {
 		console.log(errors.map(err => err.message).join(", "))
@@ -28,16 +28,29 @@ const Blog:FC<Props> = ({ preview }) => {
 	}
 
   const blogData = data as BlogType;
-  const posts = blogData.blogPostCollection.items;
+  const postDuplicates: string[] = [];
+  const fileteredPosts = blogData.filteredByTags.items
+    .map(it => it.linkedFrom.blogPostCollection.items)
+    .flat()
+    .filter(it => {
+      if (!postDuplicates.includes(it.sys.id)) {
+        postDuplicates.push(it.sys.id)
+        return true;
+      } else {
+        return false;
+      }
+    });
 
-  const duplicates: string[] = [];
-  const blogTags = posts.map((it) => {
+  const allPosts = blogData.blogPostCollection.items;
+
+  const tagDuplicates: string[] = [];
+  const blogTags = allPosts.map((it) => {
     return it.tagsCollection.items
     .map(i => ({name: i.name, id: i.sys.id}))})
     .flat()
     .filter(it => {
-      if (!duplicates.includes(it.name)) {
-        duplicates.push(it.name)
+      if (!tagDuplicates.includes(it.name)) {
+        tagDuplicates.push(it.name)
         return true;
       } else {
         return false
@@ -60,7 +73,7 @@ const Blog:FC<Props> = ({ preview }) => {
       <div className="row">
         <div className="col-xs-12 col-sm-9 col-md-9">
           <div className="flex-justify-center flex-wrap mt-60">
-            {posts.map((it) => {
+            {(selectedTags[0] ? fileteredPosts : allPosts).map((it) => {
               return (
                 <Link key={it.sys.id} to={`blog-detail/${it.sys.id}`}>
                   <PostCard data={it}/>

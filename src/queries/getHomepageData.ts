@@ -1,9 +1,9 @@
-export const getHomepageData = (lang: string) => {
+export const getHomepageData = () => {
   return (
-    `query($isPreview: Boolean=false) {
+    `query($isPreview: Boolean=false, $lang: String="en-US") {
       headerCollection {
         items {
-          title(locale: "${lang}")
+          title(locale: $lang)
           logo {
             url
             title
@@ -15,7 +15,7 @@ export const getHomepageData = (lang: string) => {
           name
           linkedin
           facebook
-          bio(locale: "${lang}") {
+          bio(locale: $lang) {
             json
           }
           image{
@@ -47,9 +47,9 @@ export const getHomepageData = (lang: string) => {
       sys {
         id
       }
-      title(locale: "${lang}")
+      title(locale: $lang)
       url
-      description(locale: "${lang}")
+      description(locale: $lang)
       tagCollection(limit: 10) {
         items {
           name

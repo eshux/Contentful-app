@@ -1,7 +1,7 @@
-export const getBlogPostById = (lang: string, id: string | undefined) => {
+export const getBlogPostById = () => {
   return (
-    `query($isPreview: Boolean=false) {
-      blogPost(locale: "${lang}", preview: $isPreview, id: "${id}") {
+    `query($isPreview: Boolean=false, $lang: String="en-US", $id: String!) {
+      blogPost(locale: $lang, preview: $isPreview, id: $id) {
         sys {
           id
         }

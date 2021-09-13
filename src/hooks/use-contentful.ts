@@ -6,12 +6,18 @@ import { BlogType } from "../types/blog/blogType";
 import { SingleBlogType } from "../types/blog/singleBlogType";
 import { HomepageType } from "../types/homepage/homepageType";
 
-const useContentful = (queryData: (lang: string, id?: string | undefined) => string, isPreview?: boolean, id?: string) => {
+const useContentful = (
+	queryData: () => string,
+	isPreview:(boolean | null) = null, 
+	id:(string | null) = null, 
+	tags: (string[] | null) = null
+) => {
 	const [data, setData] = useState<HomepageType | BlogType | SingleBlogType | null>(null);
 	const [errors, setErrors] = useState<Error[] | null>(null);
   const { siteLanguage } = useContext(LanguageContext);
 
-	const query = queryData(siteLanguage, id && id);
+	const query = queryData();
+	const lang = siteLanguage;
 
 	useEffect(() => {
 			window
@@ -21,7 +27,7 @@ const useContentful = (queryData: (lang: string, id?: string | undefined) => str
 						"Content-Type": "application/json",
 						Authorization: `Bearer ${isPreview ? CPA_ACCESS_TOKEN : CDA_ACCESS_TOKEN}`,
 					},
-					body: JSON.stringify({ query, variables: { isPreview } }),
+					body: JSON.stringify({ query, variables: { isPreview, lang, id, tags } }), // names has to be exactly the same as in query
 				})
 				.then((response) => response.json())
 				.then(({ data, errors }) => {
@@ -35,7 +41,7 @@ const useContentful = (queryData: (lang: string, id?: string | undefined) => str
         .catch((error) => {
           setErrors([error])
         })
-		}, [query, isPreview]);
+		}, [query, isPreview, lang, id, tags]);
 
   return {data, errors}
 };

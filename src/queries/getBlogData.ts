@@ -1,18 +1,18 @@
-export const getBlogData = (lang: string) => {
+export const getBlogData = () => {
   return (
-    `query($isPreview: Boolean=false) {
-      # filteredByTags: tagCollection(where: {sys: {id_in: TAGS}}, limit: 10) {
-      #  items {
-      #    name
-      #    linkedFrom {
-      #      blogPostCollection(limit: 10, preview: $isPreview) {
-      #        items {
-      #          ...allBlogPosts
-      #        }
-      #      }
-      #    }
-      #  }
-      #}
+    `query($isPreview: Boolean=false, $lang: String="en-US", $tags: [String]=null) {
+       filteredByTags: tagCollection(where: {sys: {id_in: $tags}}, limit: 10) {
+        items {
+          name
+          linkedFrom {
+            blogPostCollection(limit: 10, preview: $isPreview) {
+              items {
+                ...allBlogPosts
+              }
+            }
+          }
+        }
+      }
       blogPostCollection(limit: 10, preview: $isPreview) {
         items {
           ...allBlogPosts
@@ -24,14 +24,14 @@ export const getBlogData = (lang: string) => {
       sys {
         id
       }
-      title(locale: "${lang}")
-      introText(locale: "${lang}")
-      mainImage(locale: "${lang}") {
+      title(locale: $lang)
+      introText(locale: $lang)
+      mainImage(locale: $lang) {
         title
         description 
         url
       }
-      tagsCollection(locale: "${lang}", limit: 5) {
+      tagsCollection(locale: $lang, limit: 5) {
         items {
           name
           sys {
@@ -39,7 +39,7 @@ export const getBlogData = (lang: string) => {
           }
         }
       }
-      textCollection(locale: "${lang}", limit: 4) {
+      textCollection(locale: $lang, limit: 4) {
         items {
           title
           text {
@@ -47,7 +47,7 @@ export const getBlogData = (lang: string) => {
           }
         }
       }
-      imageTextCollection(locale: "${lang}", limit: 2) {
+      imageTextCollection(locale: $lang, limit: 2) {
         items {
           title
           text {
@@ -58,7 +58,7 @@ export const getBlogData = (lang: string) => {
           }
         }
       }
-      imageCollection(locale: "${lang}", limit: 4) {
+      imageCollection(locale: $lang, limit: 4) {
         items {
           ...imageField
         }
