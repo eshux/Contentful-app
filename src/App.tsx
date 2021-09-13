@@ -5,13 +5,14 @@ import Blog from "./pages/Blog";
 import About from "./pages/About";
 import "./App.css";
 import useContentful from "./hooks/use-contentful";
-import { homepageQuery } from "./queries/homepageQuery";
+import { getHomepageData } from "./queries/getHomepageData";
 import Header from "./components/Header/Header";
-import { HomepageType } from "./types/homepageQuery/homepageType";
+import { HomepageType } from "./types/homepage/homepageType";
+import BlogDetail from "./pages/BlogDetail";
 
 const App = () => {
 	const [isPreview, setIsPreview] = useState(true) // preview API
-	const { data, errors } = useContentful(homepageQuery, isPreview)
+	const { data, errors } = useContentful(getHomepageData, isPreview)
 
 	const homepageData = data as HomepageType;
 
@@ -40,6 +41,9 @@ const App = () => {
 				</Route>
 				<Route path="/blog">
 					<Blog preview={isPreview}/>
+				</Route>
+				<Route path="/blog-detail/:slug">
+					<BlogDetail preview={isPreview}/>
 				</Route>
 				<Route path="/about">
 					<About/>

@@ -1,4 +1,4 @@
-export const blogQuery = (lang: string) => {
+export const getAllBlogPosts = (lang: string) => {
   return (
     `query($isPreview: Boolean=false) {
       blogPostCollection(locale: "${lang}", limit: 10, preview: $isPreview) {
@@ -16,6 +16,9 @@ export const blogQuery = (lang: string) => {
           tagsCollection {
             items {
               name
+              sys {
+                id
+              }
             }
           }
           textCollection {

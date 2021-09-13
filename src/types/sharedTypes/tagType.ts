@@ -1,4 +1,4 @@
-import { BookmarkType } from "../homepageQuery/bookmarkType";
+import { BookmarkType } from "../homepage/bookmarkType";
 
 export interface TagType {
   name: string;

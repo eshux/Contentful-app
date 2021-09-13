@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import Hero from "../components/Hero/Hero";
 import Bookmarks from "../components/Bookmarks/Bookmarks";
-import { HomepageType } from "../types/homepageQuery/homepageType";
+import { HomepageType } from "../types/homepage/homepageType";
 
 type Props = {
   data: HomepageType;

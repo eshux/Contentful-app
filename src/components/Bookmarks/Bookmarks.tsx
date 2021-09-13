@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { BookmarkType } from "../../types/homepageQuery/bookmarkType";
+import { BookmarkType } from "../../types/homepage/bookmarkType";
 import Card from "../Card/Card";
 import styles from './Bookmarks.module.scss';
 

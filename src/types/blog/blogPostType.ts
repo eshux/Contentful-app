@@ -23,7 +23,7 @@ export interface BlogPostType {
   textCollection: {
     items: TextType[];
   }
-  tagCollection: {
+  tagsCollection: {
     items: TagType[];
   }
 }

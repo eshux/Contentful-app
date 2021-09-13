@@ -2,7 +2,7 @@ import React, { FC, useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { LanguageContext } from "../../context/LanguageContext";
 import { languages } from "../../data/languages";
-import { HeaderType } from "../../types/homepageQuery/headerType";
+import { HeaderType } from "../../types/homepage/headerType";
 import styles from './Header.module.scss';
 
 type Props = {

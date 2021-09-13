@@ -26,3 +26,11 @@
 .cardContent {
   padding: 0 20px 20px;
 }
+
+.tags {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  font-size: 14px;
+  color: gray;
+}

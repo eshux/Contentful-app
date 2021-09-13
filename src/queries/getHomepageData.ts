@@ -1,4 +1,4 @@
-export const homepageQuery = (lang: string) => {
+export const getHomepageData = (lang: string) => {
   return (
     `query($isPreview: Boolean=false) {
       headerCollection {

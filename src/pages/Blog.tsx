@@ -1,15 +1,16 @@
 import React, { FC } from 'react'
+import { Link } from 'react-router-dom';
 import PostCard from '../components/PostCard/PostCard';
 import useContentful from '../hooks/use-contentful';
-import { blogQuery } from '../queries/blogQuery';
-import { BlogType } from '../types/blogQuery/blogType';
+import { getAllBlogPosts } from '../queries/getAllBlogPosts';
+import { BlogType } from '../types/blog/blogType';
 
 type Props = {
   preview: boolean;
 }
 
 const Blog:FC<Props> = ({ preview }) => {
-  const { data, errors } = useContentful(blogQuery, preview);
+  const { data, errors } = useContentful(getAllBlogPosts, preview);
 
 
   if (errors) {
@@ -30,7 +31,11 @@ const Blog:FC<Props> = ({ preview }) => {
   return (
     <div className="flex-justify-center mt-60">
       {posts.map((it) => {
-        return <PostCard data={it} key={it.sys.id}/>
+        return (
+          <Link key={it.sys.id} to={`blog-detail/${it.sys.id}`}>
+            <PostCard data={it}/>
+          </Link>
+        )
       })} 
     </div>
   );

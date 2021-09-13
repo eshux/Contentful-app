@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import { PersonType } from "../../types/homepageQuery/personType";
+import { PersonType } from "../../types/homepage/personType";
 import { RichTextFormater } from "../RichTextFormater/RichTextFormater";
 import styles from './Hero.module.scss';
 
