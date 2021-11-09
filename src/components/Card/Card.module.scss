@@ -1,48 +1,46 @@
+@import '../../styles/variables.scss';
+
 .card {
   display: flex;
+  height: 100%;
   flex-direction: column;
-  padding: 16px;
+  padding: 8px;
   margin: 8px;
   border: none;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+  box-shadow: 0 3px 6px $alpha-1;
   align-items: center;
-  max-width: 250px;
+  max-width: 400px;
   width: 100%;
   transition: 0.2s;
   &:hover {
-    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    box-shadow: 0 4px 8px $alpha-2;
   }
+  cursor: pointer;
 }
 
-.cardHeader {
+.img {
   width: 100%;
+}
+
+.cardImage {
+  object-fit: cover;
+}
+
+.cardContent {
+  padding: 0 20px 20px;
+}
+
+.tags {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-}
-
-.tag {
-  background-color: rgb(140, 178, 190);
-  color: white;
-  font-weight: 700;
-  text-transform: uppercase;
-  padding: 4px 8px;
-  margin: 2px;
-  border-radius: 15px;
-  font-size: 10px;
-}
-
-.anchor {
-  color: rgb(140, 178, 190);
-  text-decoration: none;
-  font-size: 10px;
-  text-transform: uppercase;
-}
-
-.paragraph {
+  justify-content: flex-end;
+  width: 100%;
   font-size: 14px;
-  margin-top: 0;
-  text-align: center;
-  flex-grow: 1;
+  color: $gray;
+}
+
+.title {
+  font-size: 26px;
+  font-weight: 400;
+  margin: 8px 4px;
+  margin-top: 16px;
 }

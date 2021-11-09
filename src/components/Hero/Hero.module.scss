@@ -1,10 +1,13 @@
+@import '../../styles/variables.scss';
+
 .hero {
-  background-color: rgb(39, 49, 68);
+  background-color: $white-gray;
   display: flex;
   justify-content: space-around;
-  flex-wrap: wrap-reverse;
-  padding: 24px;
+  flex-wrap: wrap;
+  padding: 40px;
   align-items: center;
+  height: 100vh;
 }
 
 .content {
@@ -12,35 +15,19 @@
   width: 100%;  
 }
 
-.socials {
-  display: flex;
-  justify-content: center;
-
-  & a {
-    margin: 8px;
-  }
-}
-
-.icon { 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: white;
-  color: rgb(39, 49, 68);
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  font-size: 12px;
-  padding: 4px;
-  border: none; 
-  text-decoration: none;
-  font-weight: 700;
-}
-
 .img {
-  max-width: 300px;
+  max-width: 600px;
   width: 100%;
-  object-fit: cover;
-  object-position: top right;
-  margin: 12px 0;
+  object-fit: contain;
+}
+
+.title {
+  font-size: 84px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 24px;
+  font-weight: 400;
 }

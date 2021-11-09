@@ -1,26 +1,29 @@
-import React, { FC } from "react";
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import { PersonType } from "../../types/homepage/personType";
-import { RichTextFormater } from "../RichTextFormater/RichTextFormater";
-import styles from './Hero.module.scss';
+import { FC } from "react";
+import styles from "./Hero.module.scss";
+import hilltop from "../../assets/hilltop.png";
+import Button from "../Button/Button";
 
 type Props = {
-  person: PersonType
+  onClick: () => void;
 }
 
-const Hero:FC<Props> = ({ person }) => {
-  return (
-    <section className={styles.hero}>
-      <div className={styles.content}>
-        {documentToReactComponents(person.bio.json, RichTextFormater({textColor: "white"}))}
-        <div className={styles.socials}>
-          <a className={styles.icon} href={person.facebook}>f</a> 
-          <a className={styles.icon} href={person.linkedin}>ln</a>
-        </div>
-      </div>
-      <img src={person.image.url} alt={person.image.title} className={styles.img}/> 
-    </section>
-  )
-}
+const Hero: FC<Props> = ({onClick}) => {
+
+	return (
+		<section className={styles.hero}>
+			<div className={styles.content}>
+				<h1 className={styles.title}>Take a chance</h1>
+				<h2 className={styles.subtitle}>
+					Read all about the adventures and life lessons we have encountered in the last couple of years
+				</h2>
+				<div className="mb-80" />
+				<Button size="large" onClick={onClick}>
+					Scroll Down
+				</Button>
+			</div>
+			<img src={hilltop} alt="hill" className={styles.img} />
+		</section>
+	);
+};
 
 export default Hero;

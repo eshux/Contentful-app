@@ -1,29 +1,48 @@
-import React, { FC } from "react";
-import { BookmarkType } from "../../types/homepage/bookmarkType";
+import { FC } from 'react'
+import { Document } from "@contentful/rich-text-types";
+import { Tag } from '../../types/TagType';
 import styles from './Card.module.scss';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import { RichTextFormater } from "../RichTextFormater/RichTextFormater";
 
 type Props = {
-  bookmark: BookmarkType
+  tags: Tag[];
+  image: string;
+  alt: string;
+  title: string;
+  description: Document | string;
 }
 
-const Card:FC<Props> = ({ bookmark }) => {
+const Card:FC<Props> = ({ tags, image, alt, title, description }) => {
 
   return (
     <div className={styles.card}>
-      <div className={styles.cardHeader}>
-        {bookmark.tagCollection.items.map(tag => {
-          return (
-            <div key={tag.sys.id} className={styles.tag}>
-              <span>{tag.name}</span>
-            </div>  
-          )
+      <div className={styles.tags}>
+        {tags.map(it => {
+          return <p className="mr-8" key={it.sys.id}>{it.name}</p>
         })}
       </div>
-      <h4 className="text-center">{bookmark.title}</h4>
-      <p className={styles.paragraph}>{bookmark.description}</p>
-      <a className={styles.anchor} target="_blank" href={bookmark.url} rel="noreferrer">Visit</a>
+      <div className={styles.cardImage}>
+        <img 
+          src={image} 
+          className={styles.img} 
+          alt={alt}
+        />
+      </div>
+      <div className={styles.cardContent}>
+        <h2 
+          className={styles.title}
+        >
+          {title}
+        </h2>
+        {typeof description === 'string' ? (
+          description
+        ) : (
+            documentToReactComponents(description, RichTextFormater({textColor: "black"}))
+        )}
+      </div>
     </div>
-  )
+  );
 }
 
 export default Card;

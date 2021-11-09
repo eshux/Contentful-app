@@ -1,13 +1,12 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { BLOCKS, INLINES, MARKS, Node } from '@contentful/rich-text-types';
 import styles from './RichTextFormater.module.scss';
 
 type Props = {
   textColor?: string;
-  textLength?: number;
 }
 
-export const RichTextFormater = ({textColor, textLength}: Props) => {
+export const RichTextFormater = ({textColor}: Props) => {
 
   return {
     renderMark: {

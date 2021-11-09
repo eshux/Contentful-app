@@ -1,24 +1,41 @@
-import React, { FC } from "react";
+import { FC } from "react";
+import { useQuery } from '@apollo/client';
+import { GET_ARTICLES } from "../queries/GetArticles";
+import { GetArticles } from "../types/GetArticles";
+import Card from "../components/Card/Card";
 import Hero from "../components/Hero/Hero";
-import Bookmarks from "../components/Bookmarks/Bookmarks";
-import { HomepageType } from "../types/homepage/homepageType";
+import { scroll } from '../utils/helperFunctions';
 
-type Props = {
-  data: HomepageType;
-}
+const Homepage:FC = () => {
+	const {loading, error, data} = useQuery<GetArticles>(GET_ARTICLES);
 
-const Homepage:FC<Props> = ({ data }) => {
+	if (loading) {
+		return <p>Loading...</p>
+	}
+
+	if (error) {
+		return <p>Error :(</p>
+	}
 
 	return (
 		<>
-			<Hero person={data.personCollection.items[0]} />
-			<h4 className="text-center">Favorite bookmarks</h4>
-			{data.favoriteTag.items[0].linkedFrom
-				? <Bookmarks data={data.favoriteTag.items[0].linkedFrom?.bookmarkCollection.items}/>
-				: <h6 className="text-center">No favorite bookmarks</h6>
-			}
-			<h4 className="text-center">All bookmarks</h4>
-			<Bookmarks data={data.bookmarkCollection.items} />
+		<Hero onClick={() => scroll("down")}/>
+		<div className="flex flex-wrap">
+			{data && data.articleCollection.items.map(article => {
+				return (
+					<Card 
+						key={article.sys.id} 
+						title={article.title}
+						description={article.description.json}
+						image={article.image.url}
+						alt={article.image.description}
+						tags={article.tagCollection.items}
+					/>
+				)
+			})}
+		</div>
+		<button onClick={() => scroll("top")}>TOP</button>
+		{/* <div style={{ height: "100vh" }} /> */}
 		</>
 	);
 }
