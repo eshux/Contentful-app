@@ -1,33 +1,65 @@
 @import '../../styles/variables.scss';
 
 .hero {
-  background-color: $white-gray;
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  padding: 40px;
-  align-items: center;
-  height: 100vh;
+	background-color: $white-gray;
+	display: flex;
+	justify-content: space-around;
+	padding: 40px 140px;
+	align-items: center;
+	height: 100vh;
+	flex-basis: 100%;
 }
 
 .content {
-  max-width: 600px; 
-  width: 100%;  
+	width: 100%;
+	flex-grow: 1;
+}
+
+.imgContainer {
+	flex-grow: 1;
+	width: 100%;
 }
 
 .img {
-  max-width: 600px;
-  width: 100%;
-  object-fit: contain;
+	width: 100%;
+	object-fit: contain;
 }
 
 .title {
-  font-size: 84px;
-  font-weight: 500;
-  margin-bottom: 8px;
+	font-size: 84px;
+	font-weight: 500;
+	margin-bottom: 8px;
 }
 
 .subtitle {
-  font-size: 24px;
-  font-weight: 400;
+	font-size: 24px;
+	font-weight: 400;
+}
+
+@media only screen and (max-width: 1024px) {
+	.hero {
+		padding: 40px;
+		flex-direction: column;
+		padding-top: 140px;
+	}
+
+	.imgContainer {
+		max-width: 600px;
+	}
+
+	.content {
+		padding: 0 10vw;
+	}
+}
+
+@media only screen and (max-width: 450px) {
+	.title {
+		font-size: 56px;
+	}
+}
+
+@media only screen and (max-width: 320px) {
+	.title {
+		font-size: 48px;
+	}
 }

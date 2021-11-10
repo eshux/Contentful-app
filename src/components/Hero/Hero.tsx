@@ -21,7 +21,9 @@ const Hero: FC<Props> = ({onClick}) => {
 					Scroll Down
 				</Button>
 			</div>
-			<img src={hilltop} alt="hill" className={styles.img} />
+			<div className={styles.imgContainer}>
+				<img src={hilltop} alt="hill" className={styles.img} />
+			</div>
 		</section>
 	);
 };

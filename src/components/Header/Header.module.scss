@@ -1,0 +1,27 @@
+@import '../../styles/variables.scss';
+
+.header {
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 40px 40px;
+	background-color: transparent;
+}
+
+.nav {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+@media only screen and (max-width: 1024px) {
+	.header {
+		width: 100%;
+		background-color: transparent;
+	}
+
+	.nav {
+		display: flex;
+		flex-direction: row;
+	}
+}

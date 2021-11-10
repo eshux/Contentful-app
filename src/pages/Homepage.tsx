@@ -35,7 +35,6 @@ const Homepage:FC = () => {
 			})}
 		</div>
 		<button onClick={() => scroll("top")}>TOP</button>
-		{/* <div style={{ height: "100vh" }} /> */}
 		</>
 	);
 }

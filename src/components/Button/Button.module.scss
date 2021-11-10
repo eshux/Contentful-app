@@ -1,26 +1,69 @@
 @import '../../styles/variables.scss';
 
-.button {
-  padding: 8px 16px;
-  min-width: 140px;
-  border-radius: 50px;
-  font-family: $font-main;
-  font-size: 18px;
-  background-color: $white-gray;
-  box-shadow: inset 0px 0px 0px $alpha-1, inset 0px 0px 0px $white, 4px 6px 8px $alpha-1, -4px -6px 14px $white;
-  border: none;
-  cursor: pointer;
-  color: $gray;
-  font-weight: 500;
-  transition: box-shadow 0.2s;
+$shadow-focus: inset 4px 6px 6px $alpha-1, inset -4px -6px 10px $white, 0px 0px 0px $alpha-1, 0px 0px 0px $white;
+$shadow: inset 0px 0px 0px $alpha-1, inset 0px 0px 0px $white, 4px 6px 8px $alpha-1, -4px -6px 14px $white;
 
-  &:hover {
-    box-shadow: inset 4px 6px 6px $alpha-1, inset -4px -6px 10px $white, 0px 0px 0px $alpha-1, 0px 0px 0px $white;
-  }
+.button {
+	padding: 8px 16px;
+	min-width: 140px;
+	border-radius: 50px;
+	font-family: $font-main;
+	font-size: 18px;
+	background-color: $white-gray;
+	box-shadow: $shadow;
+	border: none;
+	cursor: pointer;
+	color: $gray;
+	font-weight: 500;
+	transition: box-shadow 0.2s;
+
+	&:hover {
+		box-shadow: $shadow-focus;
+	}
 }
 
 .large {
-  padding: 16px 34px;
-  min-width: 240px;
-  font-size: 22px;
+	padding: 16px 34px;
+	min-width: 240px;
+	font-size: 22px;
+}
+
+.clicked {
+	box-shadow: $shadow-focus;
+	&:hover {
+		box-shadow: $shadow-focus;
+	}
+}
+
+.small {
+	padding: 6px 10px;
+	min-width: auto;
+	font-size: 16px;
+	color: $darkgray;
+}
+
+.disableEl {
+	box-shadow: none;
+}
+
+.vertical {
+	transform: rotate(270deg);
+	margin: 16px 0;
+}
+
+@media only screen and (max-width: 1024px) {
+	.vertical {
+		transform: rotate(0deg);
+		margin: 0 8px;
+	}
+}
+
+@media only screen and (max-width: 450px) {
+	.button {
+		min-width: auto;
+	}
+
+	.large {
+		min-width: auto;
+	}
 }
