@@ -4,7 +4,7 @@ export const scroll = (type: "top" | "down") => {
 	const possibleHeight = maxHeight - viewHeight;
 
 	(function scrolling() {
-    // down per section ( 100vh )
+    // down per section ( 100vh - client height )
 		if (type === "down"
       && maxHeight >= viewHeight * 2 
       && window.pageYOffset < viewHeight

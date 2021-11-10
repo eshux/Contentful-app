@@ -1,0 +1,59 @@
+@import '../../styles/variables.scss';
+
+$navShadow: 0 12px 12px -6px $alpha-1;
+$buttonShadow: 0 12px 12px -6px $alpha-1;
+
+.content { 
+  display: none;
+  color: black;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 40px;
+  background-color: $white-gray;
+  box-shadow: $navShadow;
+  transition: 0.4s;
+  cursor: pointer;
+  //
+  margin-bottom: 100px;
+  
+  &:hover {
+    height: 200px;
+
+    & .content {
+      display: block;
+    }
+    & .button .arrow {
+      transform: scaleY(-1);
+    }
+  }
+}
+
+.button {
+  position: absolute;
+  bottom: -30px;
+  // width: 100px;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $white-gray;
+  box-shadow: $buttonShadow;
+  border: none;
+  padding: 20px 30px;
+  font-size: 18px;
+  color: $gray;
+
+  // height: 20px;
+}
+
+.arrow {
+  width: 30px;
+  height: 30px;
+  fill: $darkgray;
+  color: red;
+}

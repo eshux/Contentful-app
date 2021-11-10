@@ -7,6 +7,7 @@ import Hero from "../components/Hero/Hero";
 import { scroll } from '../utils/helperFunctions';
 import { LanguageContext } from "../context/LanguageContext";
 import Loader from "react-loaders";
+import NavBar from "../components/NavBar/NavBar";
 
 const Homepage:FC = () => {
 	const { siteLanguage } = useContext(LanguageContext);
@@ -21,6 +22,7 @@ const Homepage:FC = () => {
 		<Hero onClick={() => scroll("down")}/>
 		<Loader active={!loading} type="ball-scale-ripple" />
 		{error && <p>Error :(</p>}
+		<NavBar />
 		<div className="flex flex-wrap">
 			{data && data.articleCollection.items.map(article => {
 				return (
@@ -35,7 +37,6 @@ const Homepage:FC = () => {
 				)
 			})}
 		</div>
-		<button onClick={() => scroll("top")}>TOP</button>
 		</>
 	);
 }

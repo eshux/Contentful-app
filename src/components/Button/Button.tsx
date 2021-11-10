@@ -15,9 +15,9 @@ const Bookmarks:FC<Props> = ({ onClick, size, children, disableElevation, style,
     <button 
       onClick={onClick} 
       className={`
-        ${styles.button} 
+        ${styles.button}
         ${disableElevation && !style ? styles.disableEl : ""}
-        ${style === "clicked" ? styles.clicked : ""} 
+        ${style === "clicked" ? styles.clicked : ""}
         ${size === "large" ? styles.large : ""}
         ${size === "small" ? styles.small : ""}
         ${vertical ? styles.vertical : ""}

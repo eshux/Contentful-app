@@ -1,0 +1,24 @@
+@import '../../styles/variables.scss';
+
+.button {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: $white;
+	box-shadow: $shadow;
+	cursor: pointer;
+	transition: box-shadow 0.2s;
+
+	&:hover {
+		box-shadow: $shadow-focus;
+	}
+}
+
+.hide {
+  display: none;
+}
