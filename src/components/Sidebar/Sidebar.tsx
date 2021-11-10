@@ -11,11 +11,11 @@ type Props = {
   selectedTags: string[];
 }
 const Sidebar:FC<Props> = ({tags, selectTag, selectedTags}) => {
-  const { blogList } = useContext(LanguageContext);
-
+  // const { blogList } = useContext(LanguageContext);
+  
   return (
     <div className={styles.sidebar}>
-      <h6 className={styles.titles}>{blogList.searchByTags}</h6>
+      {/* <h6 className={styles.titles}>{blogList.searchByTags}</h6> */}
       <div className="flex flex-wrap">
         {tags.map(tag => {
           return (

@@ -1,25 +1,26 @@
-import { FC } from "react";
+import { FC, useContext } from "react";
 import { useQuery } from '@apollo/client';
 import { GET_ARTICLES } from "../queries/GetArticles";
 import { GetArticles } from "../types/GetArticles";
 import Card from "../components/Card/Card";
 import Hero from "../components/Hero/Hero";
 import { scroll } from '../utils/helperFunctions';
+import { LanguageContext } from "../context/LanguageContext";
+import Loader from "react-loaders";
 
 const Homepage:FC = () => {
-	const {loading, error, data} = useQuery<GetArticles>(GET_ARTICLES);
-
-	if (loading) {
-		return <p>Loading...</p>
-	}
-
-	if (error) {
-		return <p>Error :(</p>
-	}
+	const { siteLanguage } = useContext(LanguageContext);
+	const {loading, error, data} = useQuery<GetArticles>(GET_ARTICLES, {
+		variables: {
+			locale: siteLanguage
+		}
+	});
 
 	return (
 		<>
 		<Hero onClick={() => scroll("down")}/>
+		<Loader active={!loading} type="ball-scale-ripple" />
+		{error && <p>Error :(</p>}
 		<div className="flex flex-wrap">
 			{data && data.articleCollection.items.map(article => {
 				return (

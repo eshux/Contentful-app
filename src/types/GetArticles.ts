@@ -1,10 +1,6 @@
 import { Document } from "@contentful/rich-text-types";
 import { Tag } from "./TagType";
-
-interface Image {
-  url: string;
-  description: string;
-}
+import { Image } from "./ImageType";
 
 interface Article {
   sys: {

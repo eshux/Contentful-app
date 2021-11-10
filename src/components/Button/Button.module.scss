@@ -2,6 +2,9 @@
 
 $shadow-focus: inset 4px 6px 6px $alpha-1, inset -4px -6px 10px $white, 0px 0px 0px $alpha-1, 0px 0px 0px $white;
 $shadow: inset 0px 0px 0px $alpha-1, inset 0px 0px 0px $white, 4px 6px 8px $alpha-1, -4px -6px 14px $white;
+$shadow-focus-vertical: inset -4px 6px 6px $alpha-1, inset 4px -6px 10px $white, 0px 0px 0px $alpha-1,
+	0px 0px 0px $white;
+$shadow-vertical: inset 0px 0px 0px $alpha-1, inset 0px 0px 0px $white, -4px 6px 8px $alpha-1, 4px -6px 14px $white;
 
 .button {
 	padding: 8px 16px;
@@ -42,20 +45,31 @@ $shadow: inset 0px 0px 0px $alpha-1, inset 0px 0px 0px $white, 4px 6px 8px $alph
 	color: $darkgray;
 }
 
-.disableEl {
-	box-shadow: none;
-}
-
 .vertical {
 	transform: rotate(270deg);
 	margin: 16px 0;
+	box-shadow: $shadow-vertical;
+	&:hover {
+		box-shadow: $shadow-focus-vertical;
+	}
+}
+
+.verticalClicked {
+	box-shadow: $shadow-focus-vertical;
 }
 
 @media only screen and (max-width: 1024px) {
 	.vertical {
 		transform: rotate(0deg);
 		margin: 0 8px;
+    box-shadow: $shadow;
+    &:hover {
+      box-shadow: $shadow-focus;
+    }
 	}
+  .verticalClicked {
+    box-shadow: $shadow-focus;
+  }
 }
 
 @media only screen and (max-width: 450px) {
@@ -66,4 +80,9 @@ $shadow: inset 0px 0px 0px $alpha-1, inset 0px 0px 0px $white, 4px 6px 8px $alph
 	.large {
 		min-width: auto;
 	}
+}
+
+// overwrites
+.disableEl {
+	box-shadow: none;
 }

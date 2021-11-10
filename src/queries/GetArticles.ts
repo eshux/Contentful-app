@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const GET_ARTICLES = gql`
-  query GetArticles {
-    articleCollection {
+  query GetArticles($locale:String="en-US") {
+    articleCollection(locale: $locale) {
       items {
         sys {
           id
