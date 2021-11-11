@@ -4,8 +4,11 @@ $navShadow: 0 12px 12px -6px $alpha-1;
 $buttonShadow: 0 12px 12px -6px $alpha-1;
 
 .content { 
-  display: none;
-  color: black;
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.2s;
 }
 
 .container {
@@ -17,26 +20,34 @@ $buttonShadow: 0 12px 12px -6px $alpha-1;
   background-color: $white-gray;
   box-shadow: $navShadow;
   transition: 0.4s;
-  cursor: pointer;
-  //
-  margin-bottom: 100px;
+  margin-bottom: 60px;
   
   &:hover {
-    height: 200px;
+    height: 140px;
 
     & .content {
-      display: block;
+      opacity: 1;
     }
-    & .button .arrow {
+    & .button .icon {
       transform: scaleY(-1);
     }
   }
 }
 
+.open {
+  height: 140px;
+  & .content {
+    opacity: 1;
+  }
+  & .button .icon {
+    transform: scaleY(-1);
+  }
+}
+
 .button {
   position: absolute;
-  bottom: -30px;
-  // width: 100px;
+  bottom: -25px;
+  min-width: 80px;
   border-radius: 30px;
   display: flex;
   justify-content: center;
@@ -44,16 +55,8 @@ $buttonShadow: 0 12px 12px -6px $alpha-1;
   background-color: $white-gray;
   box-shadow: $buttonShadow;
   border: none;
-  padding: 20px 30px;
-  font-size: 18px;
+  padding: 10px;
+  font-size: 24px;
   color: $gray;
-
-  // height: 20px;
-}
-
-.arrow {
-  width: 30px;
-  height: 30px;
-  fill: $darkgray;
-  color: red;
+  cursor: pointer;
 }

@@ -24,6 +24,7 @@ $shadow-vertical:
 	color: $gray;
 	font-weight: 500;
 	transition: box-shadow 0.2s;
+	margin: 8px;
 
 	&:hover {
 		box-shadow: $shadow-focus;
@@ -45,7 +46,7 @@ $shadow-vertical:
 
 .small {
 	padding: 6px 10px;
-	min-width: auto;
+	min-width: 80px;
 	font-size: 16px;
 	color: $darkgray;
 }

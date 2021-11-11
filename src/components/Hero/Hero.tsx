@@ -1,6 +1,5 @@
 import { FC, useContext } from "react";
 import styles from "./Hero.module.scss";
-import hilltop from "../../assets/hilltop.png";
 import Button from "../Button/Button";
 import { LanguageContext } from "../../context/LanguageContext";
 import { GetHero } from "../../types/GetHero";
@@ -13,31 +12,39 @@ type Props = {
 }
 
 const Hero: FC<Props> = ({ onClick }) => {
-const { buttonList, siteLanguage } = useContext(LanguageContext);
-const { loading, error, data } = useQuery<GetHero>(GET_HERO, {
-	variables: {
-		locale: siteLanguage
-	}
-});
+	const { buttonList, siteLanguage } = useContext(LanguageContext);
+	const { loading, error, data } = useQuery<GetHero>(GET_HERO, {
+		variables: {
+			locale: siteLanguage
+		}
+	});
 
-const hero = data?.heroCollection.items[0];
+	const hero = data?.heroCollection.items[0];
+
+	if (loading) {
+		return (
+			<section className={styles.hero}>
+				<Loader active={loading} type="ball-pulse" />
+			</section>
+		)
+	}
+
+	if (error) {
+		return (
+			<section className={styles.hero}>
+				<p>Error :(</p>
+			</section>
+		)
+	}
 
 	return (
 		<section className={styles.hero}>
-			<Loader active={loading} type="ball-scale-ripple" />
-			{error && <p>Error :(</p>}
 			<div className={styles.content}>
 				<h1 className={styles.title}>
-					{hero
-						? hero.title 
-						: "Take a chance"
-					}
+					{hero && hero.title}
 				</h1>
 				<h2 className={styles.subtitle}>
-					{hero 
-						? hero.description 
-						: "Read all about the adventures and life lessons we have encountered in the last couple of years"
-					}
+					{hero && hero.description}
 				</h2>
 				<div className="mb-80" />
 				<Button size="large" onClick={onClick}>
@@ -46,8 +53,8 @@ const hero = data?.heroCollection.items[0];
 			</div>
 			<div className={styles.imgContainer}>
 				<img 
-					src={hero ? hero.image.url : hilltop}
-					alt={hero ? hero.image.description : "hill"}
+					src={hero && hero.image.url}
+					alt={hero && hero.image.description}
 					className={styles.img}
 				/>
 			</div>

@@ -1,7 +1,8 @@
 import { FC, useState } from 'react';
 import styles from './TopButton.module.scss';
-import up from '../../assets/up.svg';
 import { scroll } from '../../utils/helperFunctions';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleUp } from '@fortawesome/free-solid-svg-icons'
 
 const TopButton:FC = () => {
   const [hidden, setHidden] = useState(true);
@@ -22,7 +23,9 @@ const TopButton:FC = () => {
       className={`${styles.button} ${hidden ? styles.hide : ""}`}
       onClick={() => scroll("top")}
     >
-      <img src={up} alt="" />
+        <FontAwesomeIcon icon={faAngleUp} size="lg" className={styles.icon} />
+
+      {/* <img src={up} alt="" className={styles.icon}/> */}
     </button>
   )
 }

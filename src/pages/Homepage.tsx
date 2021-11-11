@@ -20,9 +20,9 @@ const Homepage:FC = () => {
 	return (
 		<>
 		<Hero onClick={() => scroll("down")}/>
-		<Loader active={!loading} type="ball-scale-ripple" />
-		{error && <p>Error :(</p>}
 		<NavBar />
+		<Loader active={loading} type="ball-scale-ripple" />
+		{error && <p>Error :(</p>}
 		<div className="flex flex-wrap">
 			{data && data.articleCollection.items.map(article => {
 				return (
@@ -37,6 +37,7 @@ const Homepage:FC = () => {
 				)
 			})}
 		</div>
+		<section style={{height: "100vh"}}></section>
 		</>
 	);
 }

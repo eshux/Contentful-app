@@ -121,6 +121,21 @@
 	min-height: 500px;
 }
 
+// typography 
+h3.sectionTitle {
+	letter-spacing: 1px;
+	font-size: 22px;
+	color: $secondary-main;
+	border-bottom: 3px solid $lightgray;
+	padding: 12px 16px;
+}
+
+a.anchorDark {
+  font-weight: 500;
+  text-decoration: none;
+  color: $secondary-dark;
+}
+
 // media queries - mobile
 @media only screen and (max-width: 768px) {
 
