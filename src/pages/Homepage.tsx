@@ -1,42 +1,54 @@
-import { FC, useContext } from "react";
+import { FC, useContext, useState } from "react";
 import { useQuery } from '@apollo/client';
-import { GET_ARTICLES } from "../queries/GetArticles";
-import { GetArticles } from "../types/GetArticles";
-import Card from "../components/Card/Card";
 import Hero from "../components/Hero/Hero";
-import { scroll } from '../utils/helperFunctions';
+import { compareArrays, scroll } from '../utils/helperFunctions';
 import { LanguageContext } from "../context/LanguageContext";
-import Loader from "react-loaders";
 import NavBar from "../components/NavBar/NavBar";
+import { GetTags } from "../types/GetTags";
+import { GET_TAGS } from "../queries/GetTags";
+import ArticleSection from "../components/ArticleSection/ArticleSection";
 
 const Homepage:FC = () => {
+	const [selectedTags, setSelectedTags] = useState<string[]>([]);
+	const [tagsToFilter, setTagsToFilter] = useState<string[]>([]);
 	const { siteLanguage } = useContext(LanguageContext);
-	const {loading, error, data} = useQuery<GetArticles>(GET_ARTICLES, {
+	const {loading:loadingTags, error:errorTags, data:dataTags} = useQuery<GetTags>(GET_TAGS, {
 		variables: {
 			locale: siteLanguage
 		}
-	});
+	})
+	const tagIds = dataTags?.tagCollection.items.map(tag => tag.contentfulMetadata.tags[0].id);
+
+  const selectTag = (id:string) => {
+    const newTags = [...selectedTags];
+    if (!newTags.includes(id)) {
+      newTags.push(id);
+      setSelectedTags(newTags);
+    } else {
+      const tagId = newTags.indexOf(id);
+      newTags.splice(tagId, 1)
+      setSelectedTags(newTags); 
+    }
+  }
+  
+  const tags = dataTags?.tagCollection.items;
 
 	return (
 		<>
 		<Hero onClick={() => scroll("down")}/>
-		<NavBar />
-		<Loader active={loading} type="ball-scale-ripple" />
-		{error && <p>Error :(</p>}
-		<div className="flex flex-wrap">
-			{data && data.articleCollection.items.map(article => {
-				return (
-					<Card 
-						key={article.sys.id} 
-						title={article.title}
-						description={article.description.json}
-						image={article.image.url}
-						alt={article.image.description}
-						tags={article.tagCollection.items}
-					/>
-				)
-			})}
-		</div>
+		<NavBar 
+			loading={loadingTags}
+			error={errorTags}
+			tags={tags}
+			selectAll={() => setSelectedTags([])}
+			selectedTags={selectedTags}
+			onSelect={(id: string) => selectTag(id)}
+			onFilter={() => setTagsToFilter(selectedTags)}
+			changesMade={!compareArrays(selectedTags, tagsToFilter)}
+		/>
+		{tagIds &&
+			<ArticleSection tags={!tagsToFilter.length ? tagIds : tagsToFilter} />
+		}
 		<section style={{height: "100vh"}}></section>
 		</>
 	);

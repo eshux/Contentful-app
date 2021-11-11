@@ -3,60 +3,87 @@
 $navShadow: 0 12px 12px -6px $alpha-1;
 $buttonShadow: 0 12px 12px -6px $alpha-1;
 
-.content { 
-  opacity: 0;
+.content {
+	opacity: 0;
+  z-index: 1;
+	display: flex;
+	align-items: center;
+	transition: opacity 0.2s;
+}
+
+.innerContent {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: opacity 0.2s;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
 }
 
 .container {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  height: 40px;
-  background-color: $white-gray;
-  box-shadow: $navShadow;
-  transition: 0.4s;
-  margin-bottom: 60px;
-  
-  &:hover {
-    height: 140px;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 40px;
+	background-color: $white-gray;
+	box-shadow: $navShadow;
+	transition: 0.4s;
+	margin-bottom: 60px;
+	padding: 0 16px;
 
-    & .content {
-      opacity: 1;
-    }
-    & .button .icon {
-      transform: scaleY(-1);
-    }
-  }
+	&:hover {
+		height: 160px;
+
+		& .content {
+			opacity: 1;
+		}
+		& .button .icon {
+			transform: scaleY(-1);
+		}
+	}
 }
 
 .open {
-  height: 140px;
-  & .content {
-    opacity: 1;
-  }
-  & .button .icon {
-    transform: scaleY(-1);
-  }
+	height: 160px;
+
+	& .content {
+		opacity: 1;
+	}
+	& .button .icon {
+		transform: scaleY(-1);
+	}
 }
 
 .button {
-  position: absolute;
-  bottom: -25px;
-  min-width: 80px;
-  border-radius: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: $white-gray;
-  box-shadow: $buttonShadow;
+	position: absolute;
+	bottom: -25px;
+	min-width: 80px;
+	border-radius: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: $white-gray;
+	box-shadow: $buttonShadow;
+	border: none;
+	padding: 10px;
+	font-size: 24px;
+	color: $gray;
+	cursor: pointer;
+}
+
+.mainButton {
+  font-size: 18px;
+  background-color: transparent;
   border: none;
-  padding: 10px;
-  font-size: 24px;
-  color: $gray;
   cursor: pointer;
+  color: $lightgray;
+  transition: 0.2s;
+  margin: 16px;
+}
+
+.mainButtonActive {
+  color: $gray;
+  &:hover {
+    color: $darkgray;
+  }
 }

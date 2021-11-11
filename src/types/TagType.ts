@@ -1,6 +1,8 @@
 export interface Tag {
-  sys: {
-    id: string;
-  },
+  contentfulMetadata: {
+    tags: {
+      id: string;
+    }[]
+  }
   name: string;
 }

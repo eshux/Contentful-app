@@ -19,5 +19,5 @@ interface Article {
 export interface GetArticles {
   articleCollection: {
     items: Article[];
-  };
+  }
 }

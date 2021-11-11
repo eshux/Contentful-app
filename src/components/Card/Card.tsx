@@ -19,7 +19,7 @@ const Card:FC<Props> = ({ tags, image, alt, title, description }) => {
     <div className={styles.card}>
       <div className={styles.tags}>
         {tags.map(it => {
-          return <p className="mr-8" key={it.sys.id}>{it.name}</p>
+          return <p className="mr-8" key={it.contentfulMetadata.tags[0].id}>{it.name}</p>
         })}
       </div>
       <div className={styles.cardImage}>
