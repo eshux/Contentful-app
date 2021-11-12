@@ -5,6 +5,7 @@ import { LanguageContext } from '../../context/LanguageContext';
 import { GET_ARTICLES } from '../../queries/GetArticles';
 import { GetArticles } from '../../types/GetArticles';
 import Card from '../Card/Card';
+import Masonry from 'react-masonry-css'
 import styles from './ArticleSection.module.scss';
 
 type Props = {
@@ -13,33 +14,52 @@ type Props = {
 
 const ArticleSection: FC<Props> = ({ tags }) => {
   const { siteLanguage } = useContext(LanguageContext);
-  const {loading:loadingArticles, error:errorArticles, data:dataArticles} = useQuery<GetArticles>(GET_ARTICLES, {
+  const {loading, error, data} = useQuery<GetArticles>(GET_ARTICLES, {
 		variables: {
 			locale: siteLanguage,
 			tags: tags
 		}
 	});
 
-  const articles = dataArticles?.articleCollection.items;
+  const articles = data?.articleCollection.items;
+
+  const breakpointColumnsObj = {
+    default: 6,
+    2000: 5,
+    1700: 4,
+    1100: 3,
+    700: 2,
+    500: 1
+  };
 
   return (
     <>
-      <Loader active={loadingArticles} type="ball-scale-ripple" />
-      {errorArticles && <p>Error :(</p>}
-      <div className="flex flex-wrap">
-        {articles && articles.map(article => {
+      {(loading || error) &&
+        <div className="flex-center mt-80" style={{height: "100vh"}}>
+          <Loader active={loading} type="ball-pulse" />
+          {error && <p>Error :(</p>}
+        </div>
+      }
+      <Masonry
+        breakpointCols={breakpointColumnsObj}
+        className="my-masonry-grid"
+        columnClassName="my-masonry-grid_column"
+      >
+        {articles && articles.map((article, i) => {
           return (
-            <Card 
-              key={article.sys.id} 
-              title={article.title}
-              description={article.description.json}
-              image={article.image.url}
-              alt={article.image.description}
-              tags={article.tagCollection.items}
-            />
+            <>
+              <Card 
+                key={article.sys.id} 
+                title={article.title}
+                description={article.description.json}
+                image={article.image.url}
+                alt={article.image.description}
+                tags={article.tagCollection.items}
+              />
+          </>
           )
         })}
-      </div>
+        </Masonry>
     </>
   )
 }

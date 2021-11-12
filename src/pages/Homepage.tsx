@@ -35,21 +35,20 @@ const Homepage:FC = () => {
 
 	return (
 		<>
-		<Hero onClick={() => scroll("down")}/>
-		<NavBar 
-			loading={loadingTags}
-			error={errorTags}
-			tags={tags}
-			selectAll={() => setSelectedTags([])}
-			selectedTags={selectedTags}
-			onSelect={(id: string) => selectTag(id)}
-			onFilter={() => setTagsToFilter(selectedTags)}
-			changesMade={!compareArrays(selectedTags, tagsToFilter)}
-		/>
-		{tagIds &&
-			<ArticleSection tags={!tagsToFilter.length ? tagIds : tagsToFilter} />
-		}
-		<section style={{height: "100vh"}}></section>
+			<Hero onClick={() => scroll("down")}/>
+			<NavBar 
+				loading={loadingTags}
+				error={errorTags}
+				tags={tags}
+				selectAll={() => setSelectedTags([])}
+				selectedTags={selectedTags}
+				onSelect={(id: string) => selectTag(id)}
+				onFilter={() => setTagsToFilter(selectedTags)}
+				changesMade={!compareArrays(selectedTags, tagsToFilter)}
+			/>
+			{tagIds &&
+				<ArticleSection tags={!tagsToFilter.length ? tagIds : tagsToFilter} />
+			}
 		</>
 	);
 }

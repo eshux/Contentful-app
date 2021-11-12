@@ -21,11 +21,23 @@ type Props = {
 
 const NavBar:FC<Props> = ({ loading, error, tags, selectedTags, selectAll, onSelect, onFilter, changesMade}) => {
   const [open, setOpen] = useState(false);
+  const [hover, setHover] = useState(false);
   const { buttonList } = useContext(LanguageContext);
 
+  const height = document.querySelector("#content")?.clientHeight;
+  
+  const csss = (hover: boolean, height: number | undefined) => ({
+    maxHeight: hover && height ? height + "px" : "40px"
+  });
+
   return (
-    <div className={`${open ? styles.open : ""} ${styles.container}`}>
-      <div className={styles.content}>
+    <div 
+      className={`${styles.container} ${open ? styles.open : ""}`}
+      onMouseOver={() => { !open && setHover(true)}}
+      onMouseOut={() => { !open && setHover(false)}}
+      style={csss(hover, height)}
+    >
+      <div className={styles.content} id="content">
         <div className={styles.innerContent}>
           <Loader active={loading} type="ball-pulse" />
           {error && <p>Error :(</p>}
@@ -39,25 +51,27 @@ const NavBar:FC<Props> = ({ loading, error, tags, selectedTags, selectAll, onSel
             >
               {buttonList.all}
           </Button>
-          {tags?.map(tag => {
-            return (
-              <Button 
-                key={tag.contentfulMetadata.tags[0].id} 
-                onClick={() => onSelect(tag.contentfulMetadata.tags[0].id)} 
-                size="small" 
-                style={selectedTags.includes(tag.contentfulMetadata.tags[0].id) ? "clicked" : undefined} 
-                disableElevation
-              >
-                {tag.name}
-              </Button>
-            )
-          })}
+            {tags?.map(tag => {
+              return (
+                <Button 
+                  key={tag.contentfulMetadata.tags[0].id} 
+                  onClick={() => onSelect(tag.contentfulMetadata.tags[0].id)} 
+                  size="small" 
+                  style={selectedTags.includes(tag.contentfulMetadata.tags[0].id) ? "clicked" : undefined} 
+                  disableElevation
+                >
+                  {tag.name}
+                </Button>
+              )
+            })}
         </div>
         <button className={`${styles.mainButton} ${changesMade ? styles.mainButtonActive : ""}`} onClick={onFilter}>
           <FontAwesomeIcon icon={faSyncAlt} size="lg" className={`${styles.icon}`} />
         </button>
       </div>
-      <button className={styles.button} onClick={() => setOpen(!open)}>
+      <button className={styles.button} onClick={() => {
+        setOpen(!open)
+      }}>
         <FontAwesomeIcon icon={faAngleDown} size="lg" className={`${styles.icon}`} />
       </button>
     </div>

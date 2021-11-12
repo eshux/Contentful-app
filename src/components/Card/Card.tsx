@@ -7,7 +7,7 @@ import { RichTextFormater } from "../RichTextFormater/RichTextFormater";
 
 type Props = {
   tags: Tag[];
-  image: string;
+  image?: string;
   alt: string;
   title: string;
   description: Document | string;
@@ -17,18 +17,22 @@ const Card:FC<Props> = ({ tags, image, alt, title, description }) => {
 
   return (
     <div className={styles.card}>
-      <div className={styles.tags}>
-        {tags.map(it => {
-          return <p className="mr-8" key={it.contentfulMetadata.tags[0].id}>{it.name}</p>
-        })}
-      </div>
-      <div className={styles.cardImage}>
-        <img 
-          src={image} 
-          className={styles.img} 
-          alt={alt}
-        />
-      </div>
+      {image && 
+        <>
+          <div className={styles.imageWrapper}>
+            <img 
+              src={image} 
+              className={styles.img} 
+              alt={alt}
+            />
+            <div className={styles.overlay}>
+              {tags.map(it => {
+                return <p className="mr-8" key={it.contentfulMetadata.tags[0].id}>#{it.name}</p>
+              })}
+            </div>
+          </div>
+        </>
+      }
       <div className={styles.cardContent}>
         <h2 
           className={styles.title}
