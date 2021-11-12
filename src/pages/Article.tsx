@@ -3,7 +3,7 @@ import React, {FC} from 'react'
 // import Loader from 'react-loaders'
 
 type Props = {
-  preview: boolean;
+  preview?: boolean;
 }
 
 const Article:FC<Props>  = ({ preview }) => {

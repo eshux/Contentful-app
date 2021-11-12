@@ -6,7 +6,6 @@ import { GET_ARTICLES } from '../../queries/GetArticles';
 import { GetArticles } from '../../types/GetArticles';
 import Card from '../Card/Card';
 import Masonry from 'react-masonry-css'
-import styles from './ArticleSection.module.scss';
 
 type Props = {
   tags: string[];
