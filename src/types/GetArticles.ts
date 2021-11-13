@@ -2,7 +2,7 @@ import { Document } from "@contentful/rich-text-types";
 import { Tag } from "./TagType";
 import { Image } from "./ImageType";
 
-interface Article {
+export interface Article {
   sys: {
     id: string;
   };
@@ -18,6 +18,8 @@ interface Article {
 
 export interface GetArticles {
   articleCollection: {
+    total: number;
+    skip: number;
     items: Article[];
   }
 }

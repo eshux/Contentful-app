@@ -5,21 +5,31 @@ import { LanguageContext } from '../../context/LanguageContext';
 import { GET_ARTICLES } from '../../queries/GetArticles';
 import { GetArticles } from '../../types/GetArticles';
 import Card from '../Card/Card';
-import Masonry from 'react-masonry-css'
+import Masonry from 'react-masonry-css';
+// import styles from './ArticleSection.module.scss';
+import Button from '../Button/Button';
 
 type Props = {
   tags: string[];
 }
 
+const COUNT = 2;
+
 const ArticleSection: FC<Props> = ({ tags }) => {
+  // const [ articles, setArticles ] = useState<Article[]>();
   const { siteLanguage } = useContext(LanguageContext);
-  const {loading, error, data} = useQuery<GetArticles>(GET_ARTICLES, {
+  const {loading, error, data, fetchMore} = useQuery<GetArticles>(GET_ARTICLES, {
 		variables: {
 			locale: siteLanguage,
-			tags: tags
-		}
+			tags: tags,
+      limit: COUNT,
+      skip: 0,
+		},
+    // onCompleted: ((data) => setArticles(data.articleCollection.items))
 	});
 
+
+  // console.log(articles)
   const articles = data?.articleCollection.items;
 
   const breakpointColumnsObj = {
@@ -30,6 +40,10 @@ const ArticleSection: FC<Props> = ({ tags }) => {
     700: 2,
     500: 1
   };
+
+  console.log("total", data?.articleCollection.total)
+  console.log("skip", data?.articleCollection.skip)
+
 
   return (
     <>
@@ -46,19 +60,49 @@ const ArticleSection: FC<Props> = ({ tags }) => {
       >
         {articles && articles.map((article, i) => {
           return (
-            <>
-              <Card 
-                key={article.sys.id} 
-                title={article.title}
-                description={article.description.json}
-                image={article.image.url}
-                alt={article.image.description}
-                tags={article.tagCollection.items}
-              />
-          </>
+            <Card 
+              key={article.sys.id} 
+              title={article.title}
+              description={article.description.json}
+              image={article.image.url}
+              alt={article.image.description}
+              tags={article.tagCollection.items}
+            />
           )
         })}
         </Masonry>
+        {data && data.articleCollection.total > data.articleCollection.skip + COUNT &&
+          <div className="flex-center mb-40 mt-40">
+            <Button 
+              size="large" 
+              onClick={() => {
+                fetchMore({
+                  variables: {
+                    skip: data?.articleCollection.skip+COUNT,
+                  },
+                  updateQuery: (previousResult, { fetchMoreResult }) => {
+                    if (!fetchMoreResult) {
+                      return previousResult;
+                    }
+                    const newNodes = fetchMoreResult.articleCollection.items;
+                    const skipData = fetchMoreResult.articleCollection.skip;
+                    const totalData = fetchMoreResult.articleCollection.total;
+                    return {
+                      ...previousResult,
+                      articleCollection: {
+                        items: [...previousResult.articleCollection.items, ...newNodes],
+                        skip: skipData,
+                        total: totalData
+                      }
+                    };
+                  }
+                })
+              }}
+            >
+              Load more
+            </Button>
+          </div>
+        }
     </>
   )
 }
