@@ -2,7 +2,8 @@
 
 ## Used technologies
 
-The app has been created using React and Contentful CMS.
+The app has been created using **React** and **Contentful**.
+App has been made in orfer to learn **GraphQL** and **Apollo _client_**
 
 Deployment made using Netlify.
 
