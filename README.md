@@ -5,7 +5,7 @@
 The app has been created using **React** and **Contentful**.
 App has been made in order to learn **GraphQL** and **Apollo _client_**
 
-Deployment made using Netlify.
+Deployment made using **Netlify**.
 
 See it [here!](https://61920c7d1b080f000808941c--blogwithcontentful.netlify.app/)
 
