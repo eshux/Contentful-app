@@ -1,0 +1,119 @@
+{
+  "entries": [
+    {
+      "metadata": {
+        "tags": [
+          {
+            "sys": {
+              "type": "Link",
+              "linkType": "Tag",
+              "id": "tagCoding"
+            }
+          },
+          {
+            "sys": {
+              "type": "Link",
+              "linkType": "Tag",
+              "id": "tagSummer"
+            }
+          }
+        ]
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "79ctjvblp4s9"
+          }
+        },
+        "type": "Entry",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "article"
+          }
+        }
+      },
+      "fields": {
+        "title": {
+          "de": "Sommer-Bootcamp",
+          "en-US": "Summer Bootcamp"
+        },
+        "image": {},
+        "tag": {
+          "en-US": [
+            {
+              "sys": {
+                "type": "Link",
+                "linkType": "Entry",
+                "id": "2MmjqDbGl0SUmJRqSbUymR"
+              }
+            },
+            {
+              "sys": {
+                "type": "Link",
+                "linkType": "Entry",
+                "id": "4ndUlEAIW2aTwxaOudL3KU"
+              }
+            }
+          ]
+        },
+        "description": {
+          "de": {
+            "data": {
+            },
+            "content": [
+              {
+                "data": {
+                },
+                "content": [
+                  {
+                    "data": {
+                    },
+                    "marks": [
+                    ],
+                    "value": "Es spielt keine Rolle, welche Ausbildung oder welchen beruflichen Hintergrund Sie haben, es sei denn, Sie haben ein Interesse an IT und grundlegende Programmierkenntnisse.",
+                    "nodeType": "text"
+                  }
+                ],
+                "nodeType": "paragraph"
+              }
+            ],
+            "nodeType": "document"
+          },
+          "en-US": {
+            "data": {
+            },
+            "content": [
+              {
+                "data": {
+                },
+                "content": [
+                  {
+                    "data": {
+                    },
+                    "marks": [
+                    ],
+                    "value": "It doesn’t matter what education or professional background you have unless you have an interest in IT and basic coding knowledge.",
+                    "nodeType": "text"
+                  }
+                ],
+                "nodeType": "paragraph"
+              }
+            ],
+            "nodeType": "document"
+          }
+        }
+      }
+    }
+  ]
+}
