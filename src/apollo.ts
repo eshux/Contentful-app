@@ -1,5 +1,8 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
-import { SPACE_ID, CDA_ACCESS_TOKEN, CPA_ACCESS_TOKEN } from './config/config';
+
+const SPACE_ID = process.env.REACT_APP_SPACE_ID;
+const CDA_ACCESS_TOKEN = process.env.REACT_APP_CDA_ACCESS_TOKEN;
+const CPA_ACCESS_TOKEN = process.env.REACT_APP_CPA_ACCESS_TOKEN;
 
 export const client = new ApolloClient({
   cache: new InMemoryCache({
