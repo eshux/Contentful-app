@@ -1,15 +1,13 @@
-import React, {FC} from 'react'
-// import { useParams } from 'react-router';
-// import Loader from 'react-loaders'
+import { FC } from 'react'
+import { useParams } from 'react-router';
 
-type Props = {
-  preview?: boolean;
-}
-
-const Article:FC<Props>  = ({ preview }) => {
+const Article:FC = () => {
+  const { slug }: { slug: string } = useParams();
 
   return (
-    <></>
+    <>
+      <p>Article: {slug}</p>
+    </>
   );
 }
 

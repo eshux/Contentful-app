@@ -3,12 +3,13 @@ import Homepage from "./pages/Homepage";
 import Article from "./pages/Article";
 import Header from "./components/Header/Header";
 import TopButton from "./components/TopButton/TopButton";
+import Footer from './components/Footer/Footer';
 
 const App = () => {
 	
 	return (
 		<Router>
-			<Header />
+			{/* <Header /> */}
 			<Switch>
 				<Route exact path="/">
 					<Homepage />
@@ -16,8 +17,12 @@ const App = () => {
 				<Route path="/article/:slug">
 					<Article />
 				</Route>
+				<Route>
+					<p>404 page not found</p>
+				</Route>
 			</Switch>
 			<TopButton />
+			<Footer />
 		</Router>	
 	);
 }

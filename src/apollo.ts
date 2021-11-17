@@ -1,5 +1,5 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
-import { SPACE_ID, CDA_ACCESS_TOKEN } from './config/config';
+import { SPACE_ID, CDA_ACCESS_TOKEN, CPA_ACCESS_TOKEN } from './config/config';
 
 export const client = new ApolloClient({
   cache: new InMemoryCache({
@@ -23,6 +23,6 @@ export const client = new ApolloClient({
   }),
   uri: `https://graphql.contentful.com/content/v1/spaces/${SPACE_ID}`,
   headers: {
-    'Authorization': `Bearer ${CDA_ACCESS_TOKEN}`,
+    'Authorization': `Bearer ${process.env.NODE_ENV === 'development' ? CPA_ACCESS_TOKEN : CDA_ACCESS_TOKEN}`,
   },
 });

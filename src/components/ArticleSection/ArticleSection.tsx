@@ -6,8 +6,10 @@ import { GET_ARTICLES } from '../../queries/GetArticles';
 import { GetArticles } from '../../types/GetArticles';
 import Card from '../Card/Card';
 import Masonry from 'react-masonry-css';
-// import styles from './ArticleSection.module.scss';
+import styles from './ArticleSection.module.scss';
 import Button from '../Button/Button';
+import { Link } from 'react-router-dom';
+import { PREVIEW } from '../../config/config';
 
 type Props = {
   tags: string[];
@@ -24,6 +26,7 @@ const ArticleSection: FC<Props> = ({ tags }) => {
 			tags: tags,
       limit: COUNT,
       skip: 0,
+      preview: PREVIEW
 		},
     // onCompleted: ((data) => setArticles(data.articleCollection.items))
 	});
@@ -41,10 +44,6 @@ const ArticleSection: FC<Props> = ({ tags }) => {
     500: 1
   };
 
-  console.log("total", data?.articleCollection.total)
-  console.log("skip", data?.articleCollection.skip)
-
-
   return (
     <>
       {(loading || error) &&
@@ -60,14 +59,15 @@ const ArticleSection: FC<Props> = ({ tags }) => {
       >
         {articles && articles.map((article, i) => {
           return (
-            <Card 
-              key={article.sys.id} 
-              title={article.title}
-              description={article.description.json}
-              image={article.image.url}
-              alt={article.image.description}
-              tags={article.tagCollection.items}
-            />
+            <Link key={article.sys.id} className={styles.link} to={`/article/${article.slug}`}>
+              <Card 
+                title={article.title}
+                description={article.description.json}
+                image={article.image && article.image.url}
+                alt={article.image && article.image.description}
+                tags={article.tagCollection.items}
+              />
+            </Link>
           )
         })}
         </Masonry>

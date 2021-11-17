@@ -7,6 +7,7 @@ import NavBar from "../components/NavBar/NavBar";
 import { GetTags } from "../types/GetTags";
 import { GET_TAGS } from "../queries/GetTags";
 import ArticleSection from "../components/ArticleSection/ArticleSection";
+import Header from "../components/Header/Header";
 
 const Homepage:FC = () => {
 	const [selectedTags, setSelectedTags] = useState<string[]>([]);
@@ -35,6 +36,7 @@ const Homepage:FC = () => {
 
 	return (
 		<>
+			<Header />
 			<Hero onClick={() => scroll("down")}/>
 			<NavBar 
 				loading={loadingTags}

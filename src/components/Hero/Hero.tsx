@@ -6,6 +6,7 @@ import { GetHero } from "../../types/GetHero";
 import { GET_HERO } from "../../queries/GetHero";
 import Loader from "react-loaders";
 import { useQuery } from "@apollo/client";
+import { PREVIEW } from "../../config/config";
 
 type Props = {
   onClick: () => void;
@@ -15,7 +16,8 @@ const Hero: FC<Props> = ({ onClick }) => {
 	const { buttonList, siteLanguage } = useContext(LanguageContext);
 	const { loading, error, data } = useQuery<GetHero>(GET_HERO, {
 		variables: {
-			locale: siteLanguage
+			locale: siteLanguage,
+			preview: PREVIEW
 		}
 	});
 

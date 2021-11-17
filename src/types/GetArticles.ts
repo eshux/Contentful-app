@@ -6,6 +6,7 @@ export interface Article {
   sys: {
     id: string;
   };
+  slug: string;
   title: string;
   description: {
     json: Document;
