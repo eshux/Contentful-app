@@ -59,10 +59,10 @@ const ArticleSection: FC<Props> = ({ tags }) => {
       >
         {articles && articles.map((article, i) => {
           return (
-            <Link key={article.sys.id} className={styles.link} to={`/article/${article.slug}`}>
+            <Link key={article.slug} className={styles.link} to={`/article/${article.slug}`}>
               <Card 
                 title={article.title}
-                description={article.description.json}
+                description={article.shortDescription}
                 image={article.image && article.image.url}
                 alt={article.image && article.image.description}
                 tags={article.tagCollection.items}

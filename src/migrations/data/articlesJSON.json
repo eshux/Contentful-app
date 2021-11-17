@@ -67,7 +67,11 @@
             }
           ]
         },
-        "description": {
+        "shortDescription": {
+          "de": "Es spielt keine Rolle, welche Ausbildung oder welchen beruflichen Hintergrund Sie haben, es sei denn, Sie haben ein Interesse an IT und grundlegende Programmierkenntnisse.",
+          "en-US": "It doesn’t matter what education or professional background you have unless you have an interest in IT and basic coding knowledge."
+        },
+        "content": {
           "de": {
             "data": {
             },

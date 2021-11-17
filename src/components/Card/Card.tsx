@@ -1,16 +1,13 @@
 import { FC } from 'react'
-import { Document } from "@contentful/rich-text-types";
 import { Tag } from '../../types/TagType';
 import styles from './Card.module.scss';
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import { RichTextFormater } from "../RichTextFormater/RichTextFormater";
 
 type Props = {
   tags: Tag[];
   image?: string;
   alt: string;
   title: string;
-  description: Document | string;
+  description: string;
 }
 
 const Card:FC<Props> = ({ tags, image, alt, title, description }) => {
@@ -34,16 +31,10 @@ const Card:FC<Props> = ({ tags, image, alt, title, description }) => {
         </>
       }
       <div className={styles.cardContent}>
-        <h2 
-          className={styles.title}
-        >
+        <h2 className={styles.title}>
           {title}
         </h2>
-        {typeof description === 'string' ? (
-          description
-        ) : (
-            documentToReactComponents(description, RichTextFormater({textColor: "black"}))
-        )}
+        <p>{description}</p>
       </div>
     </div>
   );

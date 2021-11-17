@@ -1,16 +1,10 @@
-import { Document } from "@contentful/rich-text-types";
 import { Tag } from "./TagType";
 import { Image } from "./ImageType";
 
 export interface Article {
-  sys: {
-    id: string;
-  };
   slug: string;
   title: string;
-  description: {
-    json: Document;
-  }  
+  shortDescription: string;
   tagCollection: {
     items: Tag[];
   }

@@ -8,14 +8,9 @@ export const GET_ARTICLES = gql`
       total
       skip
       items {
-        sys {
-          id
-        }
         slug
         title
-        description{
-          json
-        }  
+        shortDescription
         tagCollection {
           items {
             ...TagFragment
