@@ -1,5 +1,4 @@
-import { FC, useContext } from 'react';
-import { LanguageContext } from '../../context/LanguageContext';
+import { FC } from 'react';
 import styles from './Footer.module.scss';
 
 const Footer:FC = () => {
